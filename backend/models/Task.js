@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
+const Counter = require('./Counter');
 
 const taskSchema = new mongoose.Schema({
+    id: {
+        type: Number,
+        unique: true
+    },
     title: {
         type: String,
         required: true
@@ -8,8 +13,8 @@ const taskSchema = new mongoose.Schema({
     description: String,
     status: {
         type: String,
-        enum: ['pending', 'in-progress', 'completed'],
-        default: 'pending'
+        enum: ['todo', 'inprogress', 'review', 'done'],
+        default: 'todo'
     },
     priority: {
         type: String,
@@ -26,5 +31,25 @@ const taskSchema = new mongoose.Schema({
         required: true
     }
 }, { timestamps: true });
+
+taskSchema.pre('save', async function (next) {
+    const doc = this;
+
+    if (doc.isNew) {
+        try {
+            const counter = await Counter.findByIdAndUpdate(
+                { _id: 'taskId' },
+                { $inc: { seq: 1 } },
+                { new: true, upsert: true }
+            );
+            doc.id = counter.seq;
+            next();
+        } catch (err) {
+            next(err);
+        }
+    } else {
+        next();
+    }
+});
 
 module.exports = mongoose.model('Task', taskSchema);
