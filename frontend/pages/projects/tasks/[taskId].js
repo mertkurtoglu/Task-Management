@@ -20,7 +20,7 @@ const Task = () => {
     useEffect(() => {
         const fetchTaskAndAssignedUser = async () => {
             try {
-                const resTask = await fetch(`http://localhost:5000/tasks/${taskId}`, {
+                const resTask = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -31,13 +31,13 @@ const Task = () => {
                 setTask(data);
 
                 if (data) {
-                    const resUser = await fetch(`http://localhost:5000/auth/user/${data.assignedTo}`, {
+                    const resUser = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/user/${data.assignedTo}`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });
                     const userData = await resUser.json();
                     setAssignedUser(userData.user || null);
 
-                    const resProject = await fetch(`http://localhost:5000/projects/${data.project}`, {
+                    const resProject = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects/${data.project}`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });
                     const projectData = await resProject.json();
@@ -60,7 +60,7 @@ const Task = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await fetch('http://localhost:5000/projects', {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const data = await res.json();
@@ -75,7 +75,7 @@ const Task = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const res = await fetch('http://localhost:5000/auth/users', {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const data = await res.json();
@@ -86,7 +86,7 @@ const Task = () => {
 
     const handleUpdate = async (field, value) => {
         try {
-            const response = await fetch(`http://localhost:5000/tasks/${taskId}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -117,7 +117,7 @@ const Task = () => {
         if (!confirmDelete) return;
 
         try {
-            const res = await fetch(`http://localhost:5000/tasks/${taskId}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/${taskId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,

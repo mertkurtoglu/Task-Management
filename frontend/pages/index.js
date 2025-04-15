@@ -14,10 +14,11 @@ export default function Home() {
             setLoading(false);
             return;
         }
-
+        const aaa = `${process.env.NEXT_PUBLIC_API_URL}/projects`;
+        const bb = "dssdf"
         const fetchProjects = async () => {
             try {
-                const res = await fetch("http://localhost:5000/projects", {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -32,7 +33,7 @@ export default function Home() {
 
                 const userPromises = data.map(async (project) => {
                     if (project.createdBy) {
-                        const userRes = await fetch(`http://localhost:5000/auth/user/${project.createdBy}`, {
+                        const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/user/${project.createdBy}`, {
                             headers: { Authorization: `Bearer ${token}` },
                         });
                         if (userRes.ok) {

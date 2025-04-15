@@ -33,10 +33,10 @@ export default function Projects({ initialProjects }) {
             const token = Cookies.get("token");
 
             const [tasksRes, projectRes] = await Promise.all([
-                fetch(`http://localhost:5000/projects/${projectId}/tasks`, {
+                fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects/${projectId}/tasks`, {
                     headers: { Authorization: `Bearer ${token}` },
                 }),
-                fetch(`http://localhost:5000/projects/${projectId}`, {
+                fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects/${projectId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 }),
             ]);
@@ -61,7 +61,7 @@ export default function Projects({ initialProjects }) {
         if (!window.confirm("Are you sure you want to delete this project?")) return;
         try {
             const token = Cookies.get("token");
-            await fetch(`http://localhost:5000/projects/${projectId}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects/${projectId}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -81,7 +81,7 @@ export default function Projects({ initialProjects }) {
         if (!editedTitle.trim()) return alert("Title cannot be empty");
         try {
             const token = Cookies.get("token");
-            const res = await fetch(`http://localhost:5000/projects/${projectId}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects/${projectId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -112,7 +112,7 @@ export default function Projects({ initialProjects }) {
 
         try {
             const token = Cookies.get("token");
-            await fetch(`http://localhost:5000/tasks/${draggableId}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/${draggableId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

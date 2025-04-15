@@ -48,7 +48,7 @@ export default function EditUser() {
 
     const fetchUserData = async (id) => {
         try {
-            const res = await fetch(`http://localhost:5000/auth/user/${id}`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/user/${id}`);
             const data = await res.json();
             if (res.ok) {
                 setUser(data.user);
@@ -77,7 +77,7 @@ export default function EditUser() {
 
         const token = localStorage.getItem('token');
         try {
-            const res = await fetch(`http://localhost:5000/auth/user/${userId}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/user/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

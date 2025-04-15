@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 export const fetchProjects = createAsyncThunk('projects/fetchProjects', async () => {
     const token = Cookies.get('token');
-    const res = await fetch('http://localhost:5000/projects', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`, {
         headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();

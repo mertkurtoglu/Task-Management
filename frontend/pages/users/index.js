@@ -16,7 +16,7 @@ export default function UsersPage() {
         const fetchUsers = async () => {
             if (!token) return;
             try {
-                const res = await fetch("http://localhost:5000/auth/users", {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -54,7 +54,7 @@ export default function UsersPage() {
         if (!confirmDelete) return;
 
         try {
-            await fetch(`http://localhost:5000/auth/user/${id}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/user/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,

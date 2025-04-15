@@ -22,10 +22,10 @@ export default function CreateTask() {
         const fetchProjectsAndUsers = async () => {
             try {
                 const [projectRes, userRes] = await Promise.all([
-                    fetch("http://localhost:5000/projects", {
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`, {
                         headers: { Authorization: `Bearer ${token}` },
                     }),
-                    fetch("http://localhost:5000/auth/users"),
+                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users`),
                 ]);
 
                 const projectData = await projectRes.json();
@@ -66,7 +66,7 @@ export default function CreateTask() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/projects/${projectId}/tasks`,
+                `${process.env.NEXT_PUBLIC_API_URL}/projects/${projectId}/tasks`,
                 {
                     method: "POST",
                     headers: {
