@@ -92,7 +92,7 @@ export default function CreateProject() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <InputField
           id="name"
-          label="Proje Adı"
+          label="Project Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Project Name"
@@ -100,7 +100,7 @@ export default function CreateProject() {
 
         <TextareaField
           id="description"
-          label="Açıklama"
+          label="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Project Description"
@@ -108,11 +108,10 @@ export default function CreateProject() {
 
         <button
           type="submit"
-          className={`btn btn-soft btn-primary w-full ${
-            !["admin", "manager"].includes(currentUser?.role)
+          className={`btn btn-soft btn-primary w-full ${!["admin", "manager"].includes(currentUser?.role)
               ? "cursor-not-allowed opacity-50"
               : ""
-          }`}
+            }`}
           title={
             !["admin", "manager"].includes(currentUser?.role)
               ? "You do not have authorization to perform this operation."

@@ -158,10 +158,13 @@ export default function CreateTask() {
           id="projectId"
           value={projectId}
           onChange={(e) => setProjectId(e.target.value)}
-          options={projects.map((project) => ({
-            value: project._id,
-            label: project.name,
-          }))}
+          options={[
+            { value: "", label: "Unassigned" },
+            ...projects.map((project) => ({
+              value: project._id,
+              label: project.name,
+            })),
+          ]}
         />
 
         <button type="submit" className="btn btn-soft btn-primary w-full">
@@ -217,6 +220,7 @@ function FormSelect({ label, id, value, onChange, options }) {
         id={id}
         value={value}
         onChange={onChange}
+        required
         className="select select-bordered w-full"
       >
         {options.map((opt) => (

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { createProject, getProjects, getProjectById, updateProject, deleteProject } = require('../controllers/projectController');
 const { verifyToken, checkRole } = require('../middlewares/authMiddleware');
+const { createProject, getProjects, getProjectById, updateProject, deleteProject } = require('../controllers/projectController');
 
 // Create a new project (admin or manager)
 router.post('/', verifyToken, checkRole('admin', 'manager'), createProject);

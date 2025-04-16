@@ -1,4 +1,3 @@
-// store/projectsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 

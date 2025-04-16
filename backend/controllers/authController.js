@@ -84,24 +84,6 @@ exports.getUserById = async (req, res) => {
     }
 };
 
-// Delete user
-exports.deleteUser = async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const user = await User.findById(id);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        await User.findByIdAndDelete(id);
-        res.status(200).json({ message: 'User deleted successfully' });
-    } catch (err) {
-        console.error("Error deleting user:", err);
-        res.status(500).json({ message: 'Server error' });
-    }
-};
-
 // Update user
 exports.updateUser = async (req, res) => {
     const { id } = req.params;
@@ -129,6 +111,24 @@ exports.updateUser = async (req, res) => {
         res.status(200).json({ message: 'User updated successfully', user });
     } catch (err) {
         console.error("Error updating user:", err);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+// Delete user
+exports.deleteUser = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        await User.findByIdAndDelete(id);
+        res.status(200).json({ message: 'User deleted successfully' });
+    } catch (err) {
+        console.error("Error deleting user:", err);
         res.status(500).json({ message: 'Server error' });
     }
 };

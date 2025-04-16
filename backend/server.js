@@ -15,7 +15,7 @@ const allowedOrigins = [
   "https://task-management-sage-nine.vercel.app",
 ];
 
-// Middleware
+// CORS
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -33,12 +33,7 @@ app.use("/auth", authRoutes);
 app.use("/projects", projectRoutes);
 app.use("/", taskRoutes);
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
-
-// DB Bağlantısı
+// DB Connection
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -47,7 +42,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
-// Sunucuyu başlat
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
