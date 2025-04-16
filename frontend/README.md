@@ -1,40 +1,97 @@
+# Frontend
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
-## Getting Started
+## 🧩 Tech Stack
 
-First, run the development server:
+This project includes the following technologies and libraries:
+
+- **Next.js v15.2.5** – React framework for server-rendered apps
+- **React v19** & **ReactDOM v19**
+- **Tailwind CSS v4.1.3** – Utility-first CSS framework
+- **DaisyUI v5.0.18** – Tailwind CSS component library
+- **Redux Toolkit v2.6.1** – Modern Redux setup
+- **React-Redux v9.2.0** – React bindings for Redux
+- **Lucide React v0.488.0** – Icon set for React
+- **JS Cookie v3.0.5** – Cookie handling utility
+- **Theme Change v2.5.0** – Dynamic theme switching
+- **@hello-pangea/dnd v18.0.1** – Drag-and-drop utilities
+
+## 🚀 Getting Started
+
+### Installation
+
+````bash
+cd frontend
+npm install
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+Open http://localhost:3000 in your browser to view the application.
+
+## 🛠 Scripts
+
+- \`npm run dev\` – Start development server
+- \`npm run build\` – Create production build
+- \`npm start\` – Start production server
+- \`npm run lint\` – Run ESLint checks
+
+## 🗂 Project Structure
+```
+frontend/
+├── components/             # Reusable UI components
+│   ├── Layout.js
+│   ├── Loading.js
+│   └── ThemeToggle.js
+│
+├── pages/                  # Next.js page routes
+│   ├── projects/
+│   │   ├── [projectId].js
+│   │   └── tasks/
+│   ├── users/
+│   │   ├── [userId].js
+│   │   └── index.js
+│   ├── createProject.js
+│   ├── createTask.js
+│   ├── login.js
+│   ├── index.js
+│   ├── _app.js
+│   └── _document.js
+│
+├── public/                 # Public assets
+│
+├── store/                  # Redux slices and store
+│   ├── authSlice.js
+│   ├── projectsSlice.js
+│   └── store.js
+│
+├── styles/                 # Global and Tailwind styles
+│
+├── .env                    # Environment variables
+├── .gitignore
+├── eslint.config.mjs
+├── jsconfig.json
+└── next.config.mjs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Accounts
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+To access the Dashboard, you need to log in. You can log in with the account and passwords created for the test below.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```Developer
+Mail : mert@dev.com, Password: 123456
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```Manager
+Mail : mert@manager.com, Password: 123456
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```Admin
+Mail : mert@admin.com, Password: 123456
 
-## Learn More
+## ☁️ Deployment
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+The project was deployed to Vercel.You can access the live version of the project from this link:
+(https://task-management-sage-nine.vercel.app/)
+````
