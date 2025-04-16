@@ -11,7 +11,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,14 +31,14 @@ export default function LoginPage() {
         return;
       }
 
+      setSuccess("Login successful! Redirecting...");
       localStorage.setItem("token", data.token);
 
       Cookies.set("token", data.token, { expires: 1 }); // 1 day
       Cookies.set("name", data.user.name, { expires: 1 });
-
       dispatch(loginSuccess({ user: data.user, token: data.token }));
 
-      router.push("/");
+      setTimeout(() => router.push("/"), 1000);
     } catch (err) {
       setError("Server error.");
     }
@@ -50,6 +52,7 @@ export default function LoginPage() {
       >
         <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
 
+        {success && <p className="text-green-500 text-sm mb-4">{success}</p>}
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         <input
@@ -70,7 +73,7 @@ export default function LoginPage() {
         />
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition"
+          className="w-full btn btn-soft btn-primary py-3 rounded"
         >
           Login
         </button>
